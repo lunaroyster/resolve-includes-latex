@@ -1,0 +1,22 @@
+name: Resolve \include{} statements in .tex files
+author: lunaroyster
+description: This action recursively resolves \include{} statements in .tex files to produce a single output file
+inputs:
+  entry:
+    description: 'The .tex entry file'
+    required: true
+  out:
+    description: 'The .tex output'
+    required: true
+runs:
+  using: 'docker'
+  image: 'ubuntu-latest'
+  steps:
+    - uses: actions/checkout@v1
+    - name: setup python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+    - name: replace includes
+      run: |
+        python resolveIncludes.py $INPUT_entry $INPUT_out
