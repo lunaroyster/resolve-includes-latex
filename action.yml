@@ -13,5 +13,5 @@ runs:
   steps:
     - name: Resolve includes
       run: |
-        python3 resolveIncludes.py $INPUT_ENTRY $INPUT_OUT
+        python3 resolveIncludes.py ${{inputs.entry}} ${{inputs.out}}
       shell: bash
