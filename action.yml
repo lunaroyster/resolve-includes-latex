@@ -9,12 +9,9 @@ inputs:
     description: 'The .tex output'
     required: true
 runs:
-  using: 'composite'
+  using: "composite"
   steps:
-    - name: setup python
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.8
     - name: Resolve includes
       run: |
         python resolveIncludes.py $INPUT_entry $INPUT_out
+      shell: bash
