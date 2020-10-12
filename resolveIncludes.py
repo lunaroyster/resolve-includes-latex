@@ -9,6 +9,8 @@ def substitute(filename, stack=[]):
   if filename in stack:
     raise RecursionError(f'Cyclic \include detected {" -> ".join(current)}')
 
+  print(f'Resolving \include commands in {filename}')
+
   lines = []
   f = open(filename)
   for line in f.readlines():
@@ -28,6 +30,9 @@ def main(initialFile, outputFile):
 if len(sys.argv) != 3:
   raise ValueError(f'Wrong number of args. Expected usage: python3 script.py <entry> <output>')
 
-[_, inputFile, outputFile] = sys.argv
+[_, entryFile, outFile] = sys.argv
 
-main(inputFile, outputFile)
+print(f'Entry: {entryFile}')
+print(f'Out: {outFile}')
+
+main(entryFile, outFile)
